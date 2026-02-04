@@ -1,8 +1,8 @@
 'use client'
 
-import { type ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { type ReactNode } from 'react'
 
 interface NavLinkProps {
   icon: ReactNode;
@@ -22,7 +22,7 @@ const NavLink: React.FC<NavLinkProps> = ({ icon, text, linkUrl }) => {
           : 'text-gray-700 hover:text-indigo-700 hover:font-bold'
       }`}
     >
-      <span className="text-xl mr-2">{icon}</span>
+      <span className='text-xl mr-2'>{icon}</span>
       <span>{text}</span>
     </Link>
   )

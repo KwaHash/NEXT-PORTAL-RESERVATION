@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useLayoutEffect, useState } from 'react'
 import throttle from 'lodash.throttle'
+import { useCallback, useLayoutEffect, useState } from 'react'
 
 type ScrollPosition = { x: number; y: number }
 

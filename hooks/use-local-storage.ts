@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useCallback, useMemo } from 'react'
 
 function useLocalStorage<T>(key: string, defaultValue?: T) {
   const queryKey = useMemo(() => ['local-storage', key], [key])

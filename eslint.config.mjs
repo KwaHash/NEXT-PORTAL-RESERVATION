@@ -1,171 +1,112 @@
-import pluginNext from "@next/eslint-plugin-next";
-import pluginImport from "eslint-plugin-import";
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginStorybook from "eslint-plugin-storybook";
-import pluginUnusedImports from "eslint-plugin-unused-imports";
-import pluginTypeScriptEslint from "typescript-eslint";
+import js from "@eslint/js";
+import nextPlugin from "@next/eslint-plugin-next";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+const { flatConfig: nextFlatConfig } = nextPlugin;
 
-const reactConfig = {
-  files: ["**/*.{ts,tsx}"],
-  plugins: {
-    react: pluginReact,
-    "react-hooks": pluginReactHooks,
-    "@next/next": pluginNext,
-  },
-  rules: {
-    ...pluginReact.configs["jsx-runtime"].rules,
-    ...pluginReactHooks.configs.recommended.rules,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
-    ...pluginNext.configs.recommended.rules,
-    ...pluginNext.configs["core-web-vitals"].rules,
-    semi: ["error", "never"],
-    quotes: [
-      "error",
-      "single",
-      { avoidEscape: true, allowTemplateLiterals: true },
-    ],
-  },
-};
-
-const importConfig = {
-  files: ["**/*.{ts,tsx}"],
-  plugins: {
-    import: pluginImport,
-    "unused-imports": pluginUnusedImports,
-  },
-  settings: {
-    "import/resolver": {
-      typescript: true,
-      node: true,
-    },
-  },
-  rules: {
-    ...pluginImport.configs.recommended.rules,
-    "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        vars: "all",
-        varsIgnorePattern: "^_",
-        args: "after-used",
-        argsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^_",
-        destructuredArrayIgnorePattern: "^_",
-      },
-    ],
-    "import/no-cycle": "error",
-    "import/consistent-type-specifier-style": ["error", "prefer-inline"],
-    "import/order": [
-      "error",
-      {
-        groups: [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type",
-        ],
-        pathGroups: [
-          {
-            pattern: "{react,react-dom/**,react-router-dom}",
-            group: "builtin",
-            position: "before",
-          },
-        ],
-        pathGroupsExcludedImportTypes: ["builtin"],
-        alphabetize: {
-          order: "asc",
-        },
-        "newlines-between": "never",
-      },
-    ],
-  },
-};
-
-const tsEslintConfigs = [
-  ...pluginTypeScriptEslint.configs.recommendedTypeChecked,
+/** @type {import('eslint').Linter.Config[]} */
+const eslintConfig = [
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  nextFlatConfig.coreWebVitals,
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
-      parser: pluginTypeScriptEslint.parser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      parser: tseslint.parser,
       parserOptions: {
-        project: true,
         tsconfigRootDir: import.meta.dirname,
+        project: "./tsconfig.json",
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
     },
     plugins: {
-      "@typescript-eslint": pluginTypeScriptEslint.plugin,
+      "@typescript-eslint": tseslint.plugin,
+      react: react,
+      "react-hooks": reactHooks,
+      "unused-imports": unusedImports,
+    },
+    settings: {
+      next: {
+        rootDir: ["."],
+      },
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+      "import/resolver": {
+        typescript: {
+          alwaysTryTypes: true,
+          project: "./tsconfig.json",
+        },
+      },
+      react: {
+        version: "detect",
+      },
     },
     rules: {
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "react/prop-types": "off",
+      "react/no-unescaped-entities": "off",
+      "react/react-in-jsx-scope": "off",
+      semi: ["error", "never"],
+      quotes: ["error", "single", { avoidEscape: true, allowTemplateLiterals: true }],
+      "jsx-quotes": ["error", "prefer-single"],
+      "@typescript-eslint/no-var-requires": "warn",
+      "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "off",
-      "@typescript-eslint/switch-exhaustiveness-check": "error",
-      "@typescript-eslint/consistent-type-imports": [
-        "error",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
         {
-          prefer: "type-imports",
-          fixStyle: "inline-type-imports",
-          disallowTypeAnnotations: true,
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
         },
       ],
-      "@typescript-eslint/consistent-type-exports": "error",
-      "@typescript-eslint/require-array-sort-compare": [
+      "@typescript-eslint/naming-convention": [
         "error",
         {
-          ignoreStringArrays: true,
+          selector: "typeLike",
+          format: ["PascalCase", "UPPER_CASE"],
         },
       ],
-      "@typescript-eslint/no-misused-promises": "off",
-      "@typescript-eslint/no-unused-expressions": "off",
-      "react/jsx-curly-brace-presence": "error",
+      "no-console": ["warn", { allow: ["warn", "error", "info", "time", "timeEnd"] }],
+      "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     },
   },
   {
-    files: ["**/page.@(ts|tsx)", "**/route.@(ts|tsx)"],
-    rules: {
-      "@typescript-eslint/require-await": "off",
-    },
+    ignores: [
+      "**/*.js",
+      "**/*.json",
+      "node_modules/**",
+      "public/**",
+      "**/app/api/**",
+      "styles/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "coverage/**",
+      "dist/**",
+      ".turbo/**",
+      "next-env.d.ts",
+    ],
   },
 ];
 
-const storybookConfigs = [
-  {
-    files: ["*.stories.@(ts|tsx)", "*.story.@(ts|tsx)"],
-    plugins: {
-      storybook: pluginStorybook,
-    },
-    rules: {
-      "import/no-anonymous-default-export": "off",
-      "storybook/await-interactions": "error",
-      "storybook/context-in-play-function": "error",
-      "storybook/default-exports": "error",
-      "storybook/hierarchy-separator": "warn",
-      "storybook/no-redundant-story-name": "warn",
-      "storybook/prefer-pascal-case": "warn",
-      "storybook/story-exports": "error",
-      "storybook/use-storybook-expect": "error",
-      "storybook/use-storybook-testing-library": "error",
-    },
-  },
-  {
-    files: [".storybook/main.@(ts)"],
-    plugins: {
-      storybook: pluginStorybook,
-    },
-    rules: {
-      "storybook/no-uninstalled-addons": "error",
-    },
-  },
-];
-
-export default pluginTypeScriptEslint.config(
-  { ignores: ["**/.next/**", "**/public/**"] },
-  reactConfig,
-  importConfig,
-  ...tsEslintConfigs,
-  ...storybookConfigs
-);
+export default eslintConfig;

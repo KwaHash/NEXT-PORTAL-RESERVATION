@@ -1,15 +1,15 @@
 import '@/styles/globals.scss'
 
-import { StrictMode } from 'react'
-import HolyLoader from 'holy-loader'
-import { type Metadata, type Viewport } from 'next'
-import { Noto_Sans_JP } from 'next/font/google'
 import Providers from '@/app/providers'
 import Footer from '@/components/footer/footer'
 import NavBar from '@/components/header/nav-bar'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
 import { env } from '@/lib/config'
+import HolyLoader from 'holy-loader'
+import { type Metadata, type Viewport } from 'next'
+import { Noto_Sans_JP } from 'next/font/google'
+import { StrictMode } from 'react'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -75,13 +75,13 @@ export default function RootLayout({
 }>) {
   return (
     <StrictMode>
-      <html lang="jp" suppressHydrationWarning>
+      <html lang='jp' suppressHydrationWarning>
         <body className={notoSansJP.className}>
-          <HolyLoader color="#4338CA" height="2px" easing="linear" />
+          <HolyLoader color='#4338CA' height='2px' easing='linear' />
           <Providers>
-            <div className="flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto">
+            <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
               <NavBar />
-              <main className="flex flex-col w-full min-h-[calc(100dvh_-_80px)] mt-20">
+              <main className='flex flex-col w-full min-h-[calc(100dvh_-_80px)] mt-20'>
                 {children}
               </main>
               <Footer />

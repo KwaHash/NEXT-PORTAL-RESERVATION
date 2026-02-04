@@ -1,8 +1,8 @@
 'use client'
 
-import { type ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { type ReactNode } from 'react'
 
 interface MobileNavLinkProps {
   icon: ReactNode;
@@ -29,7 +29,7 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({
           : 'text-gray-700 hover:text-indigo-700 hover:font-bold'
       }`}
     >
-      <span className="text-2xl mr-2">{icon}</span>
+      <span className='text-2xl mr-2'>{icon}</span>
       <span>{text}</span>
     </Link>
   )

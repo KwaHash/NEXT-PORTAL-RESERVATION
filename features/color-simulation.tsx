@@ -81,7 +81,7 @@ const ColorSimulationPage = () => {
 
   return (
     <div className='w-full xl:max-w-[1440px] mx-auto xl:py-12'>
-      <div className='bg-white xl:rounded-xl shadow-lg px-6 py-12 xl:p-8'>
+      <div className='bg-white xl:rounded-xl xl:shadow-lg px-6 py-12 xl:p-8'>
         <div className='flex items-center mb-8'>
           <MdOutlinePalette className='w-10 h-10 text-blue-600 mr-3' />
           <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>カラーシミュレーション</h2>
@@ -154,11 +154,11 @@ const ColorSimulationPage = () => {
               </div>
             </div>
 
-            <div className='flex items-center gap-3 mt-8'>
+            <div className='flex flex-col sm:flex-row items-center gap-3 mt-8'>
               <Button
                 onClick={handleColorSimulation}
                 disabled={!selectedImage || isProcessing}
-                className='flex-1 text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-300 disabled:cursor-not-allowed'
+                className='w-full sm:w-auto flex-1 text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-300 disabled:cursor-not-allowed'
               >
                 {isProcessing ? (
                   <div className='flex items-center gap-2'>
@@ -174,7 +174,7 @@ const ColorSimulationPage = () => {
               </Button>
               <Button
                 onClick={resetSimulation}
-                className='flex-1 text-white h-auto px-8 py-4 rounded-none bg-gray-500 hover:bg-gray-600 transition-all duration-300 flex items-center gap-2'
+                className='w-full sm:w-auto flex-1 text-white h-auto px-8 py-4 rounded-none bg-gray-500 hover:bg-gray-600 transition-all duration-300 flex items-center gap-2'
               >
                 <FaArrowRotateLeft className='w-5 h-5' />
                 <span className='text-[15px] font-bold'>リセット</span>

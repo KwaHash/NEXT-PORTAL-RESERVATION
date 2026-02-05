@@ -25,14 +25,14 @@ const AISimulationPage = () => {
   const [timeline, setTimeline] = useState<string>('')
   const [area, setArea] = useState<number>(0)
   const [budget, setBudget] = useState<number>(0)
-  const [images, setImages] = useState<UploadImage[]>([])
+  const [uploadImages, setUploadImages] = useState<UploadImage[]>([])
 
   const handleImages = (files: FileList) => {
-    const uploadImages = Array.from(files).map((file) => ({
+    const selectedImages = Array.from(files).map((file) => ({
       url: URL.createObjectURL(file),
       file,
     }))
-    setImages((prev) => [...prev, ...uploadImages])
+    setUploadImages((prev) => [...prev, ...selectedImages])
   }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,10 +66,10 @@ const AISimulationPage = () => {
   }
 
   const removeImage = (index: number) => {
-    setImages((prev) => prev.filter((_, idx) => idx !== index))
+    setUploadImages((prev) => prev.filter((_, idx) => idx !== index))
   }
 
-  const canSubmit = images.length > 0 && !!selectedRenovationTarget && !!selectedPropertyCategory && !!location
+  const canSubmit = uploadImages.length > 0 && !!selectedRenovationTarget && !!selectedPropertyCategory && !!location
 
   return (
     <div className='w-full xl:max-w-[1440px] mx-auto xl:py-12'>
@@ -80,11 +80,10 @@ const AISimulationPage = () => {
         </div>
 
         <div className='flex flex-col gap-8'>
-          {/* 画像アップロード */}
+          {/* Image Upload */}
           <div className='flex flex-col'>
             <h3 className='text-lg font-semibold mb-4'>現在の状況を写真でアップロード</h3>
-            <div
-              className={cn(
+            <div className={cn(
                 'flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-none p-6 gap-5 bg-gray-100 transition-all duration-300',
                 isDragging && 'border-blue-500 bg-blue-50'
               )}
@@ -108,19 +107,20 @@ const AISimulationPage = () => {
               <p className='text-xs text-gray-600'>※ AIが画像から最適なプランを導き出します</p>
             </div>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6'>
-              {images.map((image, index) => (
+              {uploadImages.map((image, index) => (
                 <div key={index} className='relative aspect-video border-2 rounded-none bg-gray-100'>
                   <Image
                     src={image.url}
                     alt={image.file.name}
                     fill
-                    className='object-cover'
+                    className='absolute inset-0 w-full h-full object-cover'
                     priority
                   />
                   <Button
-                    type='button'
                     onClick={() => removeImage(index)}
-                    className='absolute right-0 top-0 w-auto h-auto p-2 bg-transparent hover:bg-transparent text-red-400 hover:text-red-600 rounded-none'
+                    className='absolute right-0 top-0 w-8 h-8 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-md border-2 border-white transition-all duration-300 flex items-center justify-center'
+                    style={{ transform: 'translate(25%, -25%)', zIndex: 2 }}
+                    aria-label='画像を閉じる'
                   >
                     <IoClose className='w-5 h-5' />
                   </Button>

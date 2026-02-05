@@ -1,13 +1,11 @@
 import { BsFillBarChartLineFill } from 'react-icons/bs'
 import { FaCameraRetro, FaRegChartBar, FaSearch } from 'react-icons/fa'
-import { FaBath, FaBed, FaKitchenSet } from 'react-icons/fa6'
 import { FiHome, FiUploadCloud, FiUser } from 'react-icons/fi'
-import { GiBedLamp, GiHouse } from 'react-icons/gi'
+import { GiHouse } from 'react-icons/gi'
 import { HiOutlineCalculator } from 'react-icons/hi'
 import { HiBuildingOffice } from 'react-icons/hi2'
 import { LuAward, LuBuilding2, LuClock, LuShieldCheck } from 'react-icons/lu'
 import { MdOutlineApartment, MdOutlinePalette } from 'react-icons/md'
-import { PiSolarRoofBold, PiToiletFill } from 'react-icons/pi'
 import { RiRobot2Fill } from 'react-icons/ri'
 
 
@@ -159,39 +157,6 @@ export const faqs = [
 	{
 		question: '工事の品質保証はありますか？',
 		answer: '全ての施工に対して最低5年間の品質保証を提供しています。また、定期点検やアフターサービスも充実しています。'
-	}
-]
-
-export const renovations = [
-	{
-		id: 'kitchen',
-		label: 'キッチン',
-		icon: FaKitchenSet
-	},
-	{
-		id: 'bathroom',
-		label: 'バスルーム',
-		icon: FaBath
-	},
-	{
-		id: 'living',
-		label: 'リビング',
-		icon: GiBedLamp
-	},
-	{
-		id: 'bedroom',
-		label: '寝室',
-		icon: FaBed
-	},
-	{
-		id: 'toilet',
-		label: 'トイレ',
-		icon: PiToiletFill
-	},
-	{
-		id: 'exterior',
-		label: '外壁・屋根',
-		icon: PiSolarRoofBold
 	}
 ]
 

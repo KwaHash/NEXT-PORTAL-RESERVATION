@@ -1,12 +1,14 @@
 'use client'
 
+import { RenovationTarget } from '@/components/simulation/renovation-target'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { renovationTargets } from '@/constants/ai-simulation'
 import { cn } from '@/lib/utils'
 import { type UploadImage } from '@/types/Image'
-import { areas, periods, properties, renovations } from '@/utils/data'
+import { areas, periods, properties } from '@/utils/data'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { BsStars } from 'react-icons/bs'
@@ -16,7 +18,7 @@ import { IoClose } from 'react-icons/io5'
 
 const AISimulationPage = () => {
   const [isDragging, setIsDragging] = useState(false)
-  const [renovation, setRenovation] = useState<string>('')
+  const [selectedRenovationTarget, setSelectedRenovationTarget] = useState<string>(renovationTargets[0].label)
   const [property, setProperty] = useState<string>('')
   const [location, setLocation] = useState<string>('')
   const [timeline, setTimeline] = useState<string>('')
@@ -66,7 +68,7 @@ const AISimulationPage = () => {
     setImages((prev) => prev.filter((_, idx) => idx !== index))
   }
 
-  const canSubmit = images.length > 0 && !!renovation && !!property && !!location
+  const canSubmit = images.length > 0 && !!selectedRenovationTarget && !!property && !!location
 
   return (
     <div className='w-full xl:max-w-[1440px] mx-auto xl:py-12'>
@@ -126,30 +128,18 @@ const AISimulationPage = () => {
             </div>
           </div>
 
-          {/* リフォーム種類 */}
+          {/* Renovation type */}
           <div className='flex flex-col'>
             <h3 className='text-lg font-semibold mb-4'>リフォーム種類</h3>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-              {renovations.map((rnv) => {
-                const Icon = rnv.icon
-                return (
-                  <Button
-                    key={rnv.id}
-                    type='button'
-                    variant='ghost'
-                    onClick={() => setRenovation(rnv.id)}
-                    className={cn(
-                      'flex flex-col gap-3 h-auto p-4 rounded-none border-2 transition-all duration-300',
-                      renovation === rnv.id
-                        ? 'border-transparent border-2 border-[#DE3B75] bg-[#FCEEF3] text-[#EA3B7D] hover:bg-[#FCEEF3]'
-                        : 'border-gray-300 hover:border-gray-400 hover:bg-gray-100 hover:text-neutral-900'
-                    )}
-                  >
-                    <Icon className={cn('w-7 h-7', renovation === rnv.id && 'text-[#EA3B7D]')} />
-                    <span className='text-[17px] font-bold'>{rnv.label}</span>
-                  </Button>
-                )
-              })}
+              {renovationTargets.map((rnv) => (
+                <RenovationTarget
+                  key={rnv.id}
+                  item={rnv}
+                  isSelected={selectedRenovationTarget === rnv.label}
+                  onSelect={() => setSelectedRenovationTarget(rnv.label)}
+                />
+              ))}
             </div>
           </div>
 

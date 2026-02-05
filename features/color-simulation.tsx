@@ -155,17 +155,17 @@ const ColorSimulationPage = () => {
             <div className='flex flex-col gap-8'>
               <div className='flex flex-col gap-1'>
                 <h4 className='text-sm font-bold mb-2'>変更前</h4>
-                <div className={cn('w-full h-auto aspect-video bg-gray-100 rounded-none border-2', selectedImage ? 'border-none' : '')}>
+                <div className={cn('relative w-full h-auto aspect-video bg-gray-100 rounded-none border-2', selectedImage ? 'border-none' : '')}>
                   {selectedImage ? (
                     <Image
                       src={selectedImage}
                       alt='変更前'
                       width={800}
                       height={600}
-                      className='w-full h-full object-cover'
+                      className='absolute inset-0 w-full h-full object-cover'
                     />
                   ) : (
-                    <div className='w-full h-full font-medium flex items-center justify-center text-gray-600'>
+                    <div className='absolute inset-0 w-full h-full font-medium flex items-center justify-center text-gray-600'>
                       画像を選択してください
                     </div>
                   )}
@@ -177,15 +177,15 @@ const ColorSimulationPage = () => {
                   変更後イメージ
                   <span className='ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-sm'>AI生成</span>
                 </h4>
-                <div className={cn('w-full h-auto aspect-video bg-gray-100 rounded-none border-2', simulationResult ? 'border-none' : '')}>
+                <div className={cn('relative w-full h-auto aspect-video bg-gray-100 rounded-none border-2', simulationResult ? 'border-none' : '')}>
                   {simulationResult ? (
-                    <div className='relative h-full'>
+                    <div className='relative w-full h-full'>
                       <Image
                         src={simulationResult}
                         alt='変更後イメージ（AI生成）'
-                        className='w-full h-full object-cover'
-                        width={600}
-                        height={300}
+                        className='absolute inset-0 w-full h-full object-cover'
+                        width={800}
+                        height={600}
                         style={{ filter: `hue-rotate(${selectedColor === '#3B82F6' ? '0' : '45'}deg) saturate(1.2)` }}
                       />
                       <div className='absolute inset-0 bg-gradient-to-r from-transparent to-transparent'
@@ -193,7 +193,7 @@ const ColorSimulationPage = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className='w-full h-full font-medium flex items-center justify-center text-gray-600'>
+                    <div className='absolute inset-0 w-full h-full font-medium flex items-center justify-center text-gray-600'>
                       シミュレーション結果がここに表示されます
                     </div>
                   )}

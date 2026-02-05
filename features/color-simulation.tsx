@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { samplePalettes, sampleRooms } from '@/constants/color-simulation'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaArrowRotateLeft, FaDownload, FaUpload } from 'react-icons/fa6'
 import { LuEye } from 'react-icons/lu'
 import { MdOutlinePalette } from 'react-icons/md'
@@ -17,7 +17,11 @@ const ColorSimulationPage = () => {
   const [selectedImage, setSelectedImage] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState(samplePalettes[0].colors[0])
   const [simulationResult, setSimulationResult] = useState<string>('')
-  const [isProcessing, setIsProcessing] = useState(false)  
+  const [isProcessing, setIsProcessing] = useState(false)
+  
+  useEffect(() => {
+    setSimulationResult('')
+  }, [selectedImage, selectedColor])
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

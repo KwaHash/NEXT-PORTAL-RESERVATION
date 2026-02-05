@@ -17,7 +17,7 @@ const ColorSimulationPage = () => {
   const [selectedImage, setSelectedImage] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState(samplePalettes[0].colors[0])
   const [simulationResult, setSimulationResult] = useState<string>('')
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)  
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -46,9 +46,38 @@ const ColorSimulationPage = () => {
     setSelectedColor(samplePalettes[0].colors[0])
   }
 
+  const handleDownloadResult = () => {
+    if (!simulationResult || !selectedColor) return
+    const img = new window.Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      ctx.filter = 'hue-rotate(20deg) saturate(1.2)'
+      ctx.drawImage(img, 0, 0)
+      ctx.filter = 'none'
+      ctx.fillStyle = selectedColor
+      ctx.globalAlpha = 0.1
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.globalAlpha = 1
+      canvas.toBlob((blob) => {
+        if (!blob) return
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `シミュレーション結果-${Date.now()}.png`
+        a.click()
+        URL.revokeObjectURL(url)
+      }, 'image/png', 1)
+    }
+    img.src = simulationResult
+  }
+
   return (
     <div className='w-full xl:max-w-[1440px] mx-auto xl:py-12'>
-      <div className='bg-white xl:rounded-2xl shadow-lg px-6 py-12 xl:p-8'>
+      <div className='bg-white xl:rounded-xl shadow-lg px-6 py-12 xl:p-8'>
         <div className='flex items-center mb-8'>
           <MdOutlinePalette className='w-10 h-10 text-blue-600 mr-3' />
           <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>カラーシミュレーション</h2>
@@ -186,7 +215,7 @@ const ColorSimulationPage = () => {
                         className='absolute inset-0 w-full h-full object-cover'
                         width={800}
                         height={600}
-                        style={{ filter: `hue-rotate(${selectedColor === '#3B82F6' ? '0' : '45'}deg) saturate(1.2)` }}
+                        style={{ filter: `hue-rotate(20deg) saturate(1.2)` }}
                       />
                       <div className='absolute inset-0 bg-gradient-to-r from-transparent to-transparent'
                         style={{ backgroundColor: selectedColor, opacity: 0.1 }}>
@@ -216,7 +245,10 @@ const ColorSimulationPage = () => {
             </div>
 
             {simulationResult && (
-              <Button className='w-full text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 max-w-[600px] mx-auto mt-auto'>
+              <Button
+                onClick={handleDownloadResult}
+                className='w-full text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 max-w-[600px] mx-auto mt-auto'
+              >
                 <FaDownload className='w-5 h-5 mr-2' />
                 <span className='text-[15px] font-bold'>シミュレーション結果を保存</span>
               </Button>

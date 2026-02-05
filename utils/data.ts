@@ -1,11 +1,9 @@
 import { BsFillBarChartLineFill } from 'react-icons/bs'
 import { FaCameraRetro, FaRegChartBar, FaSearch } from 'react-icons/fa'
 import { FiHome, FiUploadCloud, FiUser } from 'react-icons/fi'
-import { GiHouse } from 'react-icons/gi'
 import { HiOutlineCalculator } from 'react-icons/hi'
-import { HiBuildingOffice } from 'react-icons/hi2'
 import { LuAward, LuBuilding2, LuClock, LuShieldCheck } from 'react-icons/lu'
-import { MdOutlineApartment, MdOutlinePalette } from 'react-icons/md'
+import { MdOutlinePalette } from 'react-icons/md'
 import { RiRobot2Fill } from 'react-icons/ri'
 
 
@@ -157,24 +155,6 @@ export const faqs = [
 	{
 		question: '工事の品質保証はありますか？',
 		answer: '全ての施工に対して最低5年間の品質保証を提供しています。また、定期点検やアフターサービスも充実しています。'
-	}
-]
-
-export const properties = [
-	{
-		id: 'apartment',
-		label: 'マンション',
-		icon: MdOutlineApartment
-	},
-	{
-		id: 'house',
-		label: '戸建て',
-		icon: GiHouse
-	},
-	{
-		id: 'office',
-		label: 'オフィス',
-		icon: HiBuildingOffice
 	}
 ]
 

@@ -21,8 +21,8 @@ const AISimulationPage = () => {
   const [isDragging, setIsDragging] = useState(false)
   const [selectedRenovationTarget, setSelectedRenovationTarget] = useState<string>(renovationTargets[0].label)
   const [selectedPropertyCategory, setSelectedPropertyCategory] = useState<string>(propertyCategories[0].label)
-  const [location, setLocation] = useState<string>('')
-  const [timeline, setTimeline] = useState<string>('')
+  const [location, setLocation] = useState<string>(areas[0].id)
+  const [timeline, setTimeline] = useState<string>(periods[0].id)
   const [area, setArea] = useState<number>(0)
   const [budget, setBudget] = useState<number>(0)
   const [uploadImages, setUploadImages] = useState<UploadImage[]>([])
@@ -193,7 +193,6 @@ const AISimulationPage = () => {
             </div>
           </div>
 
-          {/* 面積・予算 */}
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div className='flex flex-col'>
               <h3 className='text-lg font-semibold mb-4'>面積（m²）</h3>
@@ -219,16 +218,14 @@ const AISimulationPage = () => {
             </div>
           </div>
 
-          {/* 実行ボタン */}
           <div className='flex flex-col sm:flex-row items-center gap-3'>
             <Button
-              type='button'
               onClick={handleSubmit}
               disabled={!canSubmit}
               className='w-full sm:w-auto flex-1 text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2'
             >
-              <BsStars className='w-5 h-5' />
-              <span className='text-[15px] font-bold'>AI概算を実行</span>
+              <BsStars className='w-6 h-6' />
+              <span className='text-base font-bold'>AI概算を実行</span>
             </Button>
           </div>
         </div>

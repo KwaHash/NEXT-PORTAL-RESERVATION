@@ -160,7 +160,6 @@ const AISimulationPage = () => {
             </div>
           </div>
 
-          {/* 東京都内エリア・希望開始時期 */}
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div className='flex flex-col'>
               <h3 className='text-lg font-semibold mb-4'>東京都内エリア</h3>

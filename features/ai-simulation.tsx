@@ -40,6 +40,7 @@ const AISimulationPage = () => {
     if (files && files.length > 0) {
       handleImages(files)
     }
+    e.target.value = ''
   }
 
   const handleDragOver = (e: React.DragEvent) => {

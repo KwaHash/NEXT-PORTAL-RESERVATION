@@ -118,11 +118,16 @@ const TopPage = () => {
       <section className='py-24 bg-white'>
         <div className='w-full mx-auto px-6 sm:px-10 lg:px-24'>
           <div className='text-center mb-12'>
+            <div className='flex items-center justify-center gap-4 mb-4'>
+              <span className='flex-1 max-w-12 h-px bg-indigo-300' aria-hidden />
+              <span className='text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500'>空室演出</span>
+              <span className='flex-1 max-w-12 h-px bg-indigo-300' aria-hidden />
+            </div>
             <h2 className='text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight'>
-              Before / After で確認
+              空室演出
             </h2>
-            <p className='text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto'>
-              AIによる画像補正のイメージを、スライダーで比較できます。
+            <p className='text-xl text-gray-600 leading-relaxed w-full mx-auto'>
+              AIによる画像補正で空室の魅力を演出。Before / After でスライダー比較できます。
             </p>
           </div>
           <div className='flex justify-center items-center gap-4'>
@@ -148,14 +153,21 @@ const TopPage = () => {
         </div>
       </section>
 
-      <section className='py-24 bg-white'>
+      <section className='py-24 bg-gray-100'>
         <div className='w-full mx-auto px-6 sm:px-10 lg:px-24'>
           <div className='text-center mb-12'>
+            <div className='flex items-center justify-center gap-4 mb-4'>
+              <span className='flex-1 max-w-12 h-px bg-indigo-300' aria-hidden />
+              <span className='text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500'>
+                色替え
+              </span>
+              <span className='flex-1 max-w-12 h-px bg-indigo-300' aria-hidden />
+            </div>
             <h2 className='text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight'>
-              Before / After で確認
+              色替え
             </h2>
-            <p className='text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto'>
-              AIによる画像補正のイメージを、スライダーで比較できます。
+            <p className='text-xl text-gray-600 leading-relaxed w-full mx-auto'>
+              AIによる画像の色替えイメージを、スライダーで比較できます。
             </p>
           </div>
           <div className='flex justify-center items-center gap-4'>

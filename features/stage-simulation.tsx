@@ -17,7 +17,7 @@ import { FaUpload } from 'react-icons/fa6'
 import { HiOutlineCalculator } from 'react-icons/hi'
 import { IoClose } from 'react-icons/io5'
 
-const AISimulationPage = () => {
+const StageSimulationPage = () => {
   const [isDragging, setIsDragging] = useState(false)
   const [selectedRenovationTarget, setSelectedRenovationTarget] = useState<string>(renovationTargets[0].label)
   const [selectedPropertyCategory, setSelectedPropertyCategory] = useState<string>(propertyCategories[0].label)
@@ -77,7 +77,7 @@ const AISimulationPage = () => {
       <div className='bg-white xl:rounded-xl xl:shadow-lg px-6 py-12 xl:p-8'>
         <div className='flex items-center mb-8'>
           <HiOutlineCalculator className='w-10 h-10 text-blue-600 mr-3' />
-          <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>AI概算シミュレーション</h2>
+          <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>空室演出シミュレーション</h2>
         </div>
 
         <div className='flex flex-col gap-8'>
@@ -225,7 +225,7 @@ const AISimulationPage = () => {
               className='w-full sm:w-auto flex-1 text-white h-auto px-8 py-4 rounded-none bg-blue-600 hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2'
             >
               <BsStars className='w-6 h-6' />
-              <span className='text-base font-bold'>AI概算を実行</span>
+              <span className='text-base font-bold'>実行</span>
             </Button>
           </div>
         </div>
@@ -234,4 +234,4 @@ const AISimulationPage = () => {
   )
 }
 
-export default AISimulationPage
+export default StageSimulationPage

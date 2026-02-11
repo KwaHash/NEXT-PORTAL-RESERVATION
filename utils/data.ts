@@ -5,7 +5,7 @@ import { HiOutlineCalculator } from 'react-icons/hi'
 import { LuAward, LuBuilding2, LuClock, LuShieldCheck } from 'react-icons/lu'
 import { MdOutlinePalette } from 'react-icons/md'
 import { RiRobot2Fill } from 'react-icons/ri'
-
+import { TbBrandDatabricks } from 'react-icons/tb'
 
 export const companyInfo = {
 	address: '東京都新宿区西新宿1-1-1',
@@ -21,9 +21,9 @@ export const services = [
 		icon: FiHome,
 	},
 	{
-		text: 'AI概算',
-		linkUrl: '/ai-simulation',
-		icon: HiOutlineCalculator,
+		text: '空室演出',
+		linkUrl: '/stage-simulation',
+		icon: TbBrandDatabricks,
 	},
 	{
 		text: '色替え',
@@ -88,8 +88,8 @@ export const processSteps = [
 
 export const features = [
 	{
-		title: 'AI概算シミュレーション',
-		description: '写真をアップロードするだけで、AIが瞬時にリフォーム費用を算出します。',
+		title: '空室演出シミュレーション',
+		description: '写真をアップロードするだけで、AIが瞬時に空室をステージングします。',
 		link: '/ai-simulation',
 		icon: HiOutlineCalculator,
 		color: 'bg-blue-500'

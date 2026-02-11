@@ -353,7 +353,7 @@ const TopPage = () => {
             あなたの理想のリフォームを適正価格で実現しませんか？
           </h2>
           <p className='text-xl mb-8 text-blue-100 leading-relaxed'>
-            まずは無料のAI概算シミュレーションから始めてみましょう。
+            まずは無料の空室演出シミュレーションから始めてみましょう。
             <br />
             <span className='font-bold text-yellow-300'>わずか3分で適正価格が分かります！</span>
           </p>

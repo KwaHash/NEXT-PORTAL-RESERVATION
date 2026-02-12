@@ -1,10 +1,7 @@
-import { BsFillBarChartLineFill } from 'react-icons/bs'
-import { FaCameraRetro, FaRegChartBar, FaSearch } from 'react-icons/fa'
+import { FaRegChartBar } from 'react-icons/fa'
 import { FiHome, FiUploadCloud, FiUser } from 'react-icons/fi'
-import { HiOutlineCalculator } from 'react-icons/hi'
 import { LuAward, LuBuilding2, LuClock, LuShieldCheck } from 'react-icons/lu'
 import { MdOutlinePalette } from 'react-icons/md'
-import { RiRobot2Fill } from 'react-icons/ri'
 import { TbBrandDatabricks } from 'react-icons/tb'
 
 export const companyInfo = {
@@ -57,64 +54,6 @@ export const supports = [
   { linkUrl: '/privacy', text: 'プライバシーポリシー' },
   { linkUrl: '/faq', text: 'よくある質問' },
   { linkUrl: '/contact', text: 'お問い合わせ' },
-]
-
-export const processSteps = [
-	{
-		step: '01',
-		title: '写真アップロード',
-		description: 'リフォーム箇所を撮影・アップロード',
-		icon: FaCameraRetro,
-	},
-	{
-		step: '02',
-		title: 'AI診断実行',
-		description: 'AIが瞬時に適正価格を算出・分析',
-		icon: RiRobot2Fill
-	},
-	{
-		step: '03',
-		title: '業者マッチング',
-		description: '条件に合った優良業者を自動選定',
-		icon: FaSearch
-	},
-	{
-		step: '04',
-		title: '見積もり比較',
-		description: '複数社の見積もりを透明性高く比較',
-		icon: BsFillBarChartLineFill
-	}
-]
-
-export const features = [
-	{
-		title: '空室演出シミュレーション',
-		description: '写真をアップロードするだけで、AIが瞬時に空室をステージングします。',
-		link: '/ai-simulation',
-		icon: HiOutlineCalculator,
-		color: 'bg-blue-500'
-	},
-	{
-		title: 'カラーシミュレーション',
-		description: '実際の写真に色を合成して、リフォーム後のイメージを確認できます。',
-		link: '/color-simulation',
-		icon: MdOutlinePalette,
-		color: 'bg-yellow-500'
-	},
-	{
-		title: '見積書解析',
-		description: '他社の見積書をアップロードして、詳細な価格比較と分析を行います。',
-		link: '/estimate-upload',
-		icon: FiUploadCloud,
-		color: 'bg-green-500'
-	},
-	{
-		title: '価格比較',
-		description: '複数の施工会社の見積もりを一覧で比較検討できます。',
-		link: '/comparison',
-		icon: FaRegChartBar,
-		color: 'bg-purple-500'
-	}
 ]
 
 export const benefits = [

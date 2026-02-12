@@ -1,3 +1,8 @@
+import { FaRegChartBar } from 'react-icons/fa'
+import { FiUploadCloud } from 'react-icons/fi'
+import { MdOutlinePalette } from 'react-icons/md'
+import { TbBrandDatabricks } from 'react-icons/tb'
+
 export const HOWTOWORKSTEPS = [
   {
     step: '01',
@@ -35,4 +40,35 @@ export const HOWTOWORKSTEPS = [
       'チーム共有に便利なシェア用リンク（公開・非公開）を発行可能。'
     ]
   },
+]
+
+export const TOPFEATURES = [
+	{
+		title: '空室演出',
+		description: '写真をアップロードするだけで、AIが瞬時に空室をステージングします。',
+		link: '/stage-simulation',
+		icon: TbBrandDatabricks,
+		color: 'bg-blue-500'
+	},
+	{
+		title: '色替え',
+		description: '実際の写真に色を合成して、リフォーム後のイメージを確認できます。',
+		link: '/color-simulation',
+		icon: MdOutlinePalette,
+		color: 'bg-yellow-500'
+	},
+	{
+		title: '見積送信',
+		description: '他社の見積書をアップロードして、詳細な価格比較と分析を行います。',
+		link: '/estimate-upload',
+		icon: FiUploadCloud,
+		color: 'bg-green-500'
+	},
+	{
+		title: '比較結果',
+		description: '複数の施工会社の見積もりを一覧で比較検討できます。',
+		link: '/comparison',
+		icon: FaRegChartBar,
+		color: 'bg-purple-500'
+	}
 ]

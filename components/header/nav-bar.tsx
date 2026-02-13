@@ -3,7 +3,7 @@
 import MobileNavLink from '@/components/header/mobile-nav-link'
 import NavLink from '@/components/header/nav-link'
 import { Button } from '@/components/ui/button'
-import { services } from '@/utils/data'
+import { SERVICES } from '@/constants/common'
 import Link from 'next/link'
 import { useState } from 'react'
 import { CgClose } from 'react-icons/cg'
@@ -25,14 +25,14 @@ const NavBar = () => {
           </Link>
 
           <div className='hidden xl:flex iterms-center space-x-10'>
-            {services.map((service) => {
+            {SERVICES.map((service) => {
               const Icon = service.icon
               return (
                 <NavLink 
-                  key={service.linkUrl}
+                  key={service.url}
                   icon={<Icon />}
-                  text={service.text}
-                  linkUrl={service.linkUrl}
+                  text={service.label}
+                  linkUrl={service.url}
                 />    
               )
             })}
@@ -58,14 +58,14 @@ const NavBar = () => {
       {isMenuOpen && (
         <div className='xl:hidden bg-white border-t'>
           <div className='px-4 pt-2 pb-4 space-y-2'>
-            {services.map((service) => {
+            {SERVICES.map((service) => {
               const Icon = service.icon
               return (
-                <MobileNavLink key={service.linkUrl} 
+                <MobileNavLink key={service.url} 
                   icon={<Icon />}
-                  text={service.text}
+                  text={service.label}
                   onClick={() => setIsMenuOpen(false)}
-                  linkUrl={service.linkUrl}
+                  linkUrl={service.url}
                 />
               )
             })}

@@ -1,9 +1,19 @@
 import RenovationFeatureItem from '@/components/item/renovation-feature-item'
-import { TOPFEATURES } from '@/constants/home'
+import { HOMEFEATURES } from '@/constants/home'
 
 const RenovationFeature = () => {
   return (
-    <section className='py-24 bg-white'>
+    <section className='relative py-24 bg-white overflow-hidden'>
+      <div className='absolute inset-0'
+        style={{
+          backgroundImage: `
+            linear-gradient(45deg, rgba(245, 158, 11, 0.07) 3px, transparent 3px),
+            linear-gradient(-45deg, rgba(245, 158, 11, 0.07) 3px, transparent 3px)
+          `,
+          backgroundSize: '40px 40px'
+        }}
+      />
+
       <div className='w-full mx-auto px-6 sm:px-10 lg:px-24'>
         <div className='mb-16'>
           <div className='flex items-center gap-3 mb-4'>
@@ -15,7 +25,7 @@ const RenovationFeature = () => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 px-6 sm:px-10 lg:px-24'>
-          {TOPFEATURES.map((feature, index) => (
+          {HOMEFEATURES.map((feature, index) => (
             <RenovationFeatureItem key={index} feature={feature} />
           ))}
         </div>

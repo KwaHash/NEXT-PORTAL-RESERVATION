@@ -1,6 +1,6 @@
 import { BeforeAfterSlider } from '@/components/simulation/before-after-slider'
 
-const StagePresentation = () => {
+const StageRoomPresentation = () => {
   return (
     <section className='py-24 bg-white'>
       <div className='w-full mx-auto px-6 sm:px-10 lg:px-24'>
@@ -31,4 +31,4 @@ const StagePresentation = () => {
   )
 }
 
-export default StagePresentation
+export default StageRoomPresentation

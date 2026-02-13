@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FiPlayCircle } from 'react-icons/fi'
 
-const TopHero = (): React.JSX.Element => {
+const Hero = (): React.JSX.Element => {
   return (
     <section className='relative bg-white'>
       <div className='absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-700' />
@@ -37,4 +37,4 @@ const TopHero = (): React.JSX.Element => {
   )
 }
 
-export default TopHero
+export default Hero

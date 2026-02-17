@@ -3,7 +3,7 @@ import { HOMEHOWTOS } from '@/constants/home'
 
 const HowToWork = () => {
   return (
-    <section className='relative py-24 bg-white overflow-hidden'>
+    <section className='relative py-16 sm:py-24 bg-white overflow-hidden'>
       <div className='absolute inset-0 opacity-[0.04]'
         style={{
           backgroundImage: `
@@ -23,7 +23,7 @@ const HowToWork = () => {
           </div>
           <h2 className='text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight'>ご利用方法</h2>
         </div>
-        <div className='flex flex-col gap-8 mx-auto px-6 sm:px-10 lg:px-24'>
+        <div className='flex flex-col gap-8 mx-auto lg:px-24'>
           {HOMEHOWTOS.map((item) => (
             <HowToWorkItem key={item.step} step={item.step} title={item.title} description={item.description} items={item.items} />
           ))}

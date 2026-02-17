@@ -24,7 +24,7 @@ const RenovationFeatureItem = ({ feature }: RenovationFeatureItemProps) => {
   return (
     <Link
       href={feature.link}
-      className='relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 h-[320px] p-8'
+      className='relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 h-[320px] px-8 py-6'
     >
       <div className='flex flex-col items-center justify-center h-full'>
         <div className={`w-14 h-14 ${iconBgClass} rounded-sm flex items-center justify-center mb-6 shadow-lg`}>

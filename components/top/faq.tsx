@@ -10,7 +10,7 @@ import { HOMEFAQS } from '@/constants/home'
 
 const FAQ = () => {
   return (
-    <section className='relative py-24 bg-gradient-to-br from-white via-blue-50 to-white overflow-hidden'>
+    <section className='relative py-16 sm:py-24 bg-gradient-to-br from-white via-blue-50 to-white overflow-hidden'>
       <div className='absolute inset-0 opacity-[0.04]'
         style={{
           backgroundImage: `
@@ -21,7 +21,7 @@ const FAQ = () => {
         }}
       />
       <div className='relative z-10 w-full mx-auto px-6 sm:px-10 lg:px-24'>
-        <div className='mb-16'>
+        <div className='mb-8 sm:mb-16'>
           <div className='flex items-center gap-3 mb-4'>
             <span className='w-16 h-px bg-indigo-500' aria-hidden />
             <span className='text-sm font-bold uppercase text-indigo-500'>よくあるご質問</span>

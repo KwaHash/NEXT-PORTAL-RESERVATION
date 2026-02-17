@@ -7,10 +7,10 @@ const Hero = (): React.JSX.Element => {
       <div className='absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-700' />
       <div className='relative max-w-7xl mx-auto px-4 py-24 sm:py-32'>
         <div className='text-center'>
-          <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>理想の家づくりを、AIがサポート</h1>
-          <p className='mt-6 text-lg leading-8 text-gray-100'>
+          <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-normal tracking-tight text-white'>理想の家づくりを、AIがサポート</h1>
+          <p className='mt-6 text-base sm:text-lg md:text-xl !leading-8 sm:!leading-10 text-gray-100'>
             最新のAI技術で、あなたの家づくりをより確かなものに。
-            <br />
+            <br className='hidden sm:block' />
             信頼できる工務店との出会いから、細かな相談までをトータルサポート。
           </p>
           <div className='mt-10 flex items-center justify-center'>
@@ -18,7 +18,7 @@ const Hero = (): React.JSX.Element => {
               className='rounded-md bg-white px-6 py-3 text-lg font-semibold text-indigo-600 shadow-sm hover:bg-gray-200 transition-colors duration-300 ease-out flex items-center gap-2'
             >
               <FiPlayCircle className='w-6 h-6' />
-              <span>サービス紹介動画を見る</span>
+              <span className='text-[15px] sm:text-base'>サービス紹介動画を見る</span>
             </Link>
           </div>
         </div>

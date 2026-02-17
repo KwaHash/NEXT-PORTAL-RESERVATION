@@ -111,11 +111,11 @@ export const BeforeAfterSlider = ({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className='w-1 h-full bg-white/70 backdrop-blur-sm rounded-full shrink-0' />
-        <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center ring-1 ring-slate-200 pointer-events-none'>
+        <div className='w-[3px] sm:w-1 h-full bg-white/70 backdrop-blur-sm rounded-full shrink-0' />
+        <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center ring-1 ring-slate-200 pointer-events-none'>
           <div className='flex items-center text-slate-500 gap-0.5'>
-            <HiChevronLeft className='w-4 h-4' />
-            <HiChevronRight className='w-4 h-4' />
+            <HiChevronLeft className='w-3.5 h-3.5 sm:w-4 sm:h-4' />
+            <HiChevronRight className='w-3.5 h-3.5 sm:w-4 sm:h-4' />
           </div>
         </div>
       </div>

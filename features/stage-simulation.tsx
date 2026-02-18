@@ -11,6 +11,7 @@ import { FaCheck, FaXmark } from 'react-icons/fa6'
 import { HiChevronDown, HiChevronUp, HiUser } from 'react-icons/hi2'
 
 const BEFORE_IMAGE = '/images/sample-color/01_before.png'
+const AFTER_IMAGE = '/images/sample-color/01_after.png'
 
 const StageSimulationPage = () => {
   const [exteriorOpen, setExteriorOpen] = useState(true)
@@ -100,7 +101,7 @@ const StageSimulationPage = () => {
           <div className='w-full max-w-5xl h-full min-h-[360px]'>
             <BeforeAfterSlider
               beforeImage={BEFORE_IMAGE}
-              afterImage='/images/sample-color/01_after.png'
+              afterImage={AFTER_IMAGE}
               beforeLabel='変更前'
               afterLabel='変更後'
               className='w-full h-full min-h-[360px] aspect-video'
@@ -112,20 +113,20 @@ const StageSimulationPage = () => {
           <div className='flex items-center justify-between px-6 py-4 gap-4'>
             <div className='flex items-center gap-4 min-w-0'>
               <div className='w-24 h-16 shrink-0 rounded-none overflow-hidden border-none'>
-                <Image src={BEFORE_IMAGE} alt='変更前' width={96} height={64} className='object-cover' />
+                <Image src={AFTER_IMAGE} alt='変更後' width={96} height={64} className='object-cover' />
               </div>
             </div>
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-2'>
               <Button
                 variant='destructive'
-                className='rounded-lg gap-2 bg-red-600 hover:bg-red-700'
+                className='rounded-none gap-1 bg-red-600 hover:bg-red-700 transition-all duration-500 px-3 py-2.5 h-auto w-auto'
               >
                 <FaXmark className='w-4 h-4' />
-                破棄
+                <span className='text-[13px] font-bold'>破棄</span>
               </Button>
-              <Button className='rounded-lg gap-2 bg-green-600 hover:bg-green-700'>
+              <Button className='rounded-none gap-1 bg-green-600 hover:bg-green-700 transition-all duration-500 px-3 py-2.5 h-auto w-auto'>
                 <FaCheck className='w-4 h-4' />
-                承認して保存
+                <span className='text-[13px] font-bold'>承認して保存</span>
               </Button>
             </div>
           </div>

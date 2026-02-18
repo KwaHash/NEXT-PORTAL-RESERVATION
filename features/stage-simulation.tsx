@@ -4,6 +4,7 @@ import { BeforeAfterSlider } from '@/components/simulation/before-after-slider'
 import { ToolButton } from '@/components/simulation/tool-button'
 import { Button } from '@/components/ui/button'
 import { exteriorTools, interiorTools } from '@/constants/stage-simulation'
+import Image from 'next/image'
 import { useState } from 'react'
 import { BsStars } from 'react-icons/bs'
 import { FaCheck, FaXmark } from 'react-icons/fa6'
@@ -110,9 +111,8 @@ const StageSimulationPage = () => {
         <div className='border-t border-gray-700 shrink-0'>
           <div className='flex items-center justify-between px-6 py-4 gap-4'>
             <div className='flex items-center gap-4 min-w-0'>
-              <div className='w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-gray-600 bg-gray-700'>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={BEFORE_IMAGE} alt='変更前' className='w-full h-full object-cover' />
+              <div className='w-24 h-16 shrink-0 rounded-none overflow-hidden border-none'>
+                <Image src={BEFORE_IMAGE} alt='変更前' width={96} height={64} className='object-cover' />
               </div>
             </div>
             <div className='flex items-center gap-3'>

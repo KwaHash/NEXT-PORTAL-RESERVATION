@@ -11,7 +11,7 @@ const DesktopRequired = () => {
         写真編集スタジオはデスクトップまたはタブレット画面で最適にご利用いただけます。
       </p>
       <Button asChild className='bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-sm px-8 py-4 h-auto w-auto transition-all duration-500'>
-        <Link href='/'>トップページに戻る</Link>
+        <Link href='/'>ホームページへ</Link>
       </Button>
     </div>
   )

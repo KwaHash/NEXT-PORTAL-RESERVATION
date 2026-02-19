@@ -75,7 +75,7 @@ export const BeforeAfterSlider = ({
 
   return (
     <div ref={containerRef}
-      className={`relative w-full aspect-video overflow-hidden rounded-xl bg-gray-100 shadow-lg ${className}`}
+      className={`relative w-full aspect-video overflow-hidden rounded-lg bg-gray-100 shadow-lg ${className}`}
     >
       <Image
         src={afterImage}

@@ -23,10 +23,10 @@ export const SUPPORTS = [
 ]
 
 export const COMPANYINFO = {
-	address: '東京都新宿区西新宿1-1-1',
-	phone: '03-1234-5678',
-	mail: 'info@yutakahome.jp',
-	time: '平日 9:00-18:00',
+	address: '',
+	phone: '',
+	mail: '',
+	time: '',
 	socials: [
 		{ label: 'facebook', url: 'https://facebook.com/' },
 		{ label: 'twitter', url: 'https://twitter.com/' },

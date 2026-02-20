@@ -13,11 +13,10 @@ const Footer = () => {
           <div className='col-span-1 flex flex-col justify-between'>
             <div className='flex flex-col'>
               <h3 className='text-2xl font-extrabold mb-4 flex items-center gap-2'>
-                <span className='bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg'>株式会社ゆたかホーム</span>
+                <span className='bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg'>外壁ぽっけ</span>
               </h3>
               <p className='text-gray-300 mb-4 leading-relaxed'>
-                <span className='font-semibold text-blue-200'>東京都特化</span>のリフォーム専門会社として、<br />
-                <span className='text-indigo-200'>AI × 住まい</span>で安心・安全・満足いただける住まいづくりをお手伝いします。
+                リフォーム専門会社として、<span className='text-indigo-200'>AI × 住まい</span>で安心・<br />安全・満足いただける住まいづくりをお手伝いします。
               </p>
               <div className='flex flex-col gap-3 text-gray-400 text-sm'>
                 <div className='flex items-center gap-2'>
@@ -94,7 +93,7 @@ const Footer = () => {
         </div>
 
         <div className='border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm flex flex-col items-center gap-2'>
-          <p>&copy; 2026 <span className='font-bold text-blue-200'>株式会社ゆたかホーム</span>. All rights reserved.</p>
+          <p>&copy; 2026 <span className='font-bold text-blue-200'>外壁ぽっけ</span>. All rights reserved.</p>
           <p className='inline-block px-2 py-0.5 rounded bg-blue-700/30 text-blue-200 font-semibold text-xs tracking-wide'>AI × リフォームで未来の住まいを創造</p>
         </div>
       </div>

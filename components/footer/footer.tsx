@@ -1,9 +1,5 @@
-import { COMPANYINFO, SERVICES, SUPPORTS } from '@/constants/common'
-import { WEBSITE_ICONS } from '@/constants/icons'
+import { SERVICES, SUPPORTS } from '@/constants/common'
 import Link from 'next/link'
-import { FiPhone } from 'react-icons/fi'
-import { LuClock4, LuMapPin } from 'react-icons/lu'
-import { MdOutlineMailOutline } from 'react-icons/md'
 
 const Footer = () => {
   return (
@@ -18,7 +14,7 @@ const Footer = () => {
               <p className='text-gray-300 mb-4 leading-relaxed'>
                 リフォーム専門会社として、<span className='text-indigo-200'>AI × 住まい</span>で安心・<br />安全・満足いただける住まいづくりをお手伝いします。
               </p>
-              <div className='flex flex-col gap-3 text-gray-400 text-sm'>
+              {/* <div className='flex flex-col gap-3 text-gray-400 text-sm'>
                 <div className='flex items-center gap-2'>
                   <LuMapPin className='w-4 h-4 text-blue-400' />
                   <span>{COMPANYINFO.address}</span>
@@ -35,9 +31,9 @@ const Footer = () => {
                   <LuClock4 className='w-4 h-4 text-blue-400' />
                   <span>{COMPANYINFO.time}</span>
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className='mt-6 flex flex-wrap items-center gap-3'>
+            {/* <div className='mt-6 flex flex-wrap items-center gap-3'>
               {COMPANYINFO.socials.map((item) => {
                 return (
                   <Link
@@ -51,7 +47,7 @@ const Footer = () => {
                   </Link>
                 )
               })}
-            </div>
+            </div> */}
           </div>
 
           <div className='flex flex-row justify-between sm:justify-around'>

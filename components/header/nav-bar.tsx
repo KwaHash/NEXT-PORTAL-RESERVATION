@@ -19,9 +19,7 @@ const NavBar = () => {
         <div className='flex justify-between h-20'>
           <Link href='/' className='flex items-center gap-2'>
             <FcHome className='text-3xl' />
-            <span className='text-2xl font-bold text-indigo-600 hover:text-indigo-700 transition-all duration-300 ease-out'>
-              リフォームAIポータル
-            </span>
+            <span className='text-2xl font-bold text-indigo-600 hover:text-indigo-700 transition-all duration-300 ease-out'>外壁ぽっけ</span>
           </Link>
 
           <div className='hidden xl:flex iterms-center space-x-10'>

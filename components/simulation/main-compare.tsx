@@ -1,5 +1,6 @@
 'use client'
 
+import { AdjustSettingsBar } from '@/components/simulation/adjust-settings-bar'
 import { BeforeAfterSlider } from '@/components/simulation/before-after-slider'
 import Image from 'next/image'
 import { FaUpload } from 'react-icons/fa6'
@@ -52,6 +53,11 @@ export const MainCompare = ({ beforeImage, afterImage }: MainCompareProps) => {
           </div>
         )}
       </div>
+
+      <div className='shrink-0 px-4 pb-4'>
+        <AdjustSettingsBar />
+      </div>
+
       {thumbnailBar}
     </div>
   )

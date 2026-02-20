@@ -15,7 +15,7 @@ const StageSimulationPage = () => {
   const [exteriorOpen, setExteriorOpen] = useState(true)
   const [interiorOpen, setInteriorOpen] = useState(true)
   const [selectedTool, setSelectedTool] = useState<string | null>(null)
-  const [beforeImage, setBeforeImage] = useState<string | null>('/images/sample-color/01_before.png')
+  const [beforeImage, setBeforeImage] = useState<string | null>('')
   const [afterImage, setAfterImage] = useState<string | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
 

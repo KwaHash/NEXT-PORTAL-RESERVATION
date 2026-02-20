@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 東京都特化型リフォーム×AIポータル
 
-## Getting Started
+東京都に特化したリフォーム情報とAI技術を融合したポータルサイトです。地域密着の施工事例や最新のリフォームプランを、AIによる自動提案やシミュレーション機能でわかりやすく提供し、理想の住まいづくりをサポートします。
 
-First, run the development server:
+## 主な機能
+
+- **ホーム** — ヒーロー、空室演出・色替えの紹介、ご利用の流れ、リフォームの特徴、よくある質問を掲載したトップページ。
+- **空室演出（ステージシミュレーション）** — 写真の before/after をスライダーで比較。外観・室内向けのAIツールで編集イメージを確認（デスクトップ・タブレット推奨）。
+- **色替え（カラーシミュレーション）** — 部屋写真のアップロードまたはサンプル画像を選択し、パレットやカスタムカラーで色替えシミュレーションを実行。結果の保存が可能（デスクトップ・タブレット推奨）。
+
+その他、利用規約・プライバシーポリシー・FAQ・お問い合わせなどのサポートページを提供しています。
+
+## 技術スタック
+
+Next.js 14 (App Router), TypeScript, Tailwind CSS, Radix UI, React Query, Redux Toolkit.
+
+## 開発の始め方
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) で表示できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## デプロイ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+VPS へのデプロイは GitHub Actions で行います。`main` への push または手動実行でデプロイ可能。必要なシークレットと手順は `.github/DEPLOY-INSTRUCTION.md` を参照してください。

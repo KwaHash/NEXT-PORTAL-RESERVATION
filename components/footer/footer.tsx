@@ -15,10 +15,9 @@ const Footer = () => {
               <h3 className='text-2xl font-extrabold mb-4 flex items-center gap-2'>
                 <span className='bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg'>外壁ぽっけ</span>
               </h3>
-              {/* <p className='text-gray-300 mb-4 leading-relaxed'>
-                <span className='font-semibold text-blue-200'>東京都特化</span>のリフォーム専門会社として、<br />
-                <span className='text-indigo-200'>AI × 住まい</span>で安心・安全・満足いただける住まいづくりをお手伝いします。
-              </p> */}
+              <p className='text-gray-300 mb-4 leading-relaxed'>
+                リフォーム専門会社として、<span className='text-indigo-200'>AI × 住まい</span>で安心・<br />安全・満足いただける住まいづくりをお手伝いします。
+              </p>
               <div className='flex flex-col gap-3 text-gray-400 text-sm'>
                 <div className='flex items-center gap-2'>
                   <LuMapPin className='w-4 h-4 text-blue-400' />

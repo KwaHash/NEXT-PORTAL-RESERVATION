@@ -37,7 +37,7 @@ export const MainCompare = ({ beforeImage, afterImage, className, imageAdjust }:
             imageAdjust={imageAdjust}
           />
         ) : (
-          <div className='relative w-full aspect-video overflow-hidden rounded-xl bg-gray-100 shadow-lg'>
+          <div className='relative w-full aspect-video overflow-hidden rounded-lg bg-gray-100 shadow-lg'>
             <Image
               src={beforeImage}
               alt='変更前'

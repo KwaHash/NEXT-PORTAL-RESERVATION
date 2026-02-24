@@ -4,12 +4,33 @@ import Image from 'next/image'
 import React, { useCallback, useRef, useState } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
 
+export type ImageAdjust = {
+  brightness: number
+  saturation: number
+  contrast: number
+  warmth: number
+}
+
+const buildImageFilter = (a: ImageAdjust): string | null => {
+  const b = 1 + a.brightness / 100
+  const c = 1 + a.contrast / 100
+  const s = 1 + a.saturation / 100
+  if (a.warmth >= 0) {
+    const w = a.warmth * 0.004
+    return `brightness(${b}) contrast(${c}) saturate(${s}) sepia(${w})`
+  } else {
+    const w = a.warmth / 2
+    return `brightness(${b}) contrast(${c}) saturate(${s}) hue-rotate(${w}deg)`
+  }
+}
+
 type BeforeAfterSliderProps = {
   beforeImage: string
   afterImage: string
   beforeLabel?: string
   afterLabel?: string
   className?: string
+  imageAdjust?: ImageAdjust
 }
 
 export const BeforeAfterSlider = ({
@@ -18,7 +39,11 @@ export const BeforeAfterSlider = ({
   beforeLabel = 'Before',
   afterLabel = 'After',
   className = '',
+  imageAdjust,
 }: BeforeAfterSliderProps) => {
+  const afterFilter = imageAdjust ? buildImageFilter(imageAdjust) : undefined
+  console.log('here -> ', afterFilter)
+  const afterStyle = afterFilter ? { filter: afterFilter } : undefined
   const [position, setPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -75,7 +100,7 @@ export const BeforeAfterSlider = ({
 
   return (
     <div ref={containerRef}
-      className={`relative w-full aspect-video overflow-hidden rounded-lg bg-gray-100 shadow-lg ${className}`}
+      className={`relative w-full h-full aspect-video overflow-hidden rounded-lg bg-gray-100 shadow-lg ${className}`}
     >
       <Image
         src={afterImage}
@@ -83,6 +108,7 @@ export const BeforeAfterSlider = ({
         width={500}
         height={400}
         className='absolute inset-0 w-full h-full object-cover'
+        style={afterStyle}
       />
 
       <div className='absolute top-0 left-0 bottom-0 overflow-hidden' style={{ width: `${position}%` }}>

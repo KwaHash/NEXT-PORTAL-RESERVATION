@@ -11,7 +11,7 @@ export type ImageAdjust = {
   warmth: number
 }
 
-const buildImageFilter = (a: ImageAdjust): string | null => {
+export const buildImageFilter = (a: ImageAdjust): string | null => {
   const b = 1 + a.brightness / 100
   const c = 1 + a.contrast / 100
   const s = 1 + a.saturation / 100
@@ -42,7 +42,6 @@ export const BeforeAfterSlider = ({
   imageAdjust,
 }: BeforeAfterSliderProps) => {
   const afterFilter = imageAdjust ? buildImageFilter(imageAdjust) : undefined
-  console.log('here -> ', afterFilter)
   const afterStyle = afterFilter ? { filter: afterFilter } : undefined
   const [position, setPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)

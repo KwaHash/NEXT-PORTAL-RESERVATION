@@ -2,6 +2,7 @@
 
 import { ImageUploadButton } from '@/components/button/image-upload'
 import DesktopRequired from '@/components/desktop-required'
+import { buildImageFilter } from '@/components/simulation/before-after-slider'
 import { MainCompare } from '@/components/simulation/main-compare'
 import { ThumbnailBar } from '@/components/simulation/thumbnail-bar'
 import { ToolButton } from '@/components/simulation/tool-button'
@@ -9,9 +10,10 @@ import { AdjustSlider } from '@/components/slider/adjust-slider'
 import { Button } from '@/components/ui/button'
 import { exteriorTools, interiorTools } from '@/constants/stage-simulation'
 import { cn } from '@/lib/utils'
-import { useState } from 'react'
+import Image from 'next/image'
+import { useCallback, useState } from 'react'
 import { BsStars } from 'react-icons/bs'
-import { FaShareNodes } from 'react-icons/fa6'
+import { FaDownload, FaShareNodes } from 'react-icons/fa6'
 import { HiAdjustmentsHorizontal, HiArrowPath, HiCheck, HiChevronDown, HiChevronUp, HiUser, HiXMark } from 'react-icons/hi2'
 
 const StageSimulationPage = () => {
@@ -20,27 +22,66 @@ const StageSimulationPage = () => {
   const [selectedTool, setSelectedTool] = useState<string | null>(null)
   const [beforeImage, setBeforeImage] = useState<string | null>('/images/sample-color/01_before.png')
   const [afterImage, setAfterImage] = useState<string | null>('/images/sample-color/01_before.png')
+  const [isApplied, setIsApplied] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [expanded, setExpanded] = useState(false)
+  const [isSettingExpanded, setIsSettingExpanded] = useState(false)
   const [brightness, setBrightness] = useState(0)
   const [saturation, setSaturation] = useState(0)
   const [contrast, setContrast] = useState(0)
   const [warmth, setWarmth] = useState(0)
+  const [filteredImageDataUrl, setFilteredImageDataUrl] = useState<string | null>(null)
 
-  const handleDiscard = () => {
+  const handleApplyTool = () => {
+    setIsProcessing(true)
+    setTimeout(() => {
+      setAfterImage('/images/sample-color/01_after.png')
+      setIsApplied(true)
+      setIsProcessing(false)
+    }, 2000)
+  }
+
+  const handleApplyImage = useCallback(() => {
+    if (!afterImage) return
+    const img = new window.Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      const filterStr = buildImageFilter({ brightness, saturation, contrast, warmth })
+      if (filterStr) ctx.filter = filterStr
+      ctx.drawImage(img, 0, 0)
+      const dataUrl = canvas.toDataURL('image/png')
+      setFilteredImageDataUrl(dataUrl)
+    }
+    img.onerror = () => setFilteredImageDataUrl(null)
+    img.src = afterImage
+    setIsApplied(false)
+    setIsSettingExpanded(false)
+  }, [afterImage, brightness, saturation, contrast, warmth])
+
+  const handleDownloadFiltered = useCallback(() => {
+    if (!filteredImageDataUrl) return
+    const a = document.createElement('a')
+    a.href = filteredImageDataUrl
+    a.download = `空室演出-${Date.now()}.png`
+    a.click()
+  }, [filteredImageDataUrl])
+
+  const handleReset = () => {
     setBrightness(0)
     setSaturation(0)
     setContrast(0)
     setWarmth(0)
   }
 
-
-  const handleApplyTool = () => {
-    setIsProcessing(true)
-    setTimeout(() => {
-      setAfterImage('/images/sample-color/01_after.png')
-      setIsProcessing(false)
-    }, 2000)
+  const handleDiscard = () => {
+    setAfterImage(null)
+    setIsSettingExpanded(false)
+    setIsApplied(false)
+    setFilteredImageDataUrl(null)
   }
 
   return (
@@ -139,91 +180,114 @@ const StageSimulationPage = () => {
             <MainCompare
               beforeImage={beforeImage}
               afterImage={afterImage}
-              className={expanded ? 'max-w-2xl' : 'max-w-5xl'}
+              className={isSettingExpanded ? 'max-w-2xl' : 'max-w-5xl'}
               imageAdjust={{ brightness, saturation, contrast, warmth }}
             />
-            <div className='shrink-0 border-t border-gray-700 overflow-hidden'>
-              <div className='flex items-center justify-between px-6 py-3'>
-                <Button
-                  onClick={() => setExpanded((e) => !e)}
-                  className={cn('flex items-center gap-2 rounded-sm h-auto py-2 px-3 transition-all duration-300', 
-                    expanded ? 'bg-orange-500/20 border border-orange-500/50 text-orange-500 hover:bg-orange-500/30' : 'bg-gray-700/80 border border-gray-600 text-white hover:bg-gray-600' 
-                  )}
-                >
-                  <HiAdjustmentsHorizontal className='w-5 h-5 shrink-0' />
-                  <span className='font-medium'>設定を調整</span>
-                  {expanded ? (
-                    <HiChevronUp className='w-4 h-4 shrink-0' />
-                  ) : (
-                    <HiChevronDown className='w-4 h-4 shrink-0' />
-                  )}
-                </Button>
+            { afterImage && isApplied && (
+              <div className='shrink-0 border-t border-gray-700 overflow-hidden'>
+                <div className='flex items-center justify-between px-6 py-3'>
+                  <Button
+                    onClick={() => setIsSettingExpanded((e) => !e)}
+                    className={cn('flex items-center gap-2 rounded-sm h-auto py-2 px-3 transition-all duration-300', 
+                      isSettingExpanded ? 'bg-orange-500/20 border border-orange-500/50 text-orange-500 hover:bg-orange-500/30' : 'bg-gray-700/80 border border-gray-600 text-white hover:bg-gray-600' 
+                    )}
+                  >
+                    <HiAdjustmentsHorizontal className='w-5 h-5 shrink-0' />
+                    <span className='font-medium'>設定を調整</span>
+                    {isSettingExpanded ? (
+                      <HiChevronUp className='w-4 h-4 shrink-0' />
+                    ) : (
+                      <HiChevronDown className='w-4 h-4 shrink-0' />
+                    )}
+                  </Button>
 
-                <div className='flex items-center gap-2'>
-                  <Button
-                    variant='ghost'
-                    onClick={handleDiscard}
-                    className='rounded-none gap-2 bg-red-600/90 hover:bg-red-500 text-white border-0 h-auto py-2 px-4 transition-all duration-300'
-                  >
-                    <HiXMark className='w-4 h-4' />
-                    <span>リセット</span>
-                  </Button>
-                  <Button
-                    className='rounded-none gap-2 bg-green-600 hover:bg-green-500 text-white border-0 h-auto py-2 px-4 transition-all duration-300'
-                  >
-                    <HiCheck className='w-4 h-4' />
-                    <span>適用して保存</span>
-                  </Button>
-                </div>
-              </div>
-              {expanded && (
-                <div className='flex flex-col p-4'>
-                  <div className='py-4 border-t border-gray-700 grid grid-cols-2 gap-8'>
-                    <AdjustSlider
-                      label='明るさ'
-                      value={brightness}
-                      onChange={setBrightness}
-                      min={-50}
-                      max={50}
-                    />
-                    <AdjustSlider
-                      label='コントラスト'
-                      value={contrast}
-                      onChange={setContrast}
-                      min={-50}
-                      max={50}
-                    />
-                    <AdjustSlider
-                      label='鮮やかさ'
-                      value={saturation}
-                      onChange={setSaturation}
-                      min={-50}
-                      max={50}
-                    />
-                    <AdjustSlider
-                      label='暖かさ'
-                      value={warmth}
-                      onChange={setWarmth}
-                      min={-50}
-                      max={50}
-                    />
+                  <div className='flex items-center gap-2'>
+                    <Button
+                      onClick={handleDiscard}
+                      className='rounded-none gap-2 bg-red-600/90 hover:bg-red-500 text-white border-0 h-auto py-2 px-4 transition-all duration-300'
+                    >
+                      <HiXMark className='w-4 h-4' />
+                      <span>リセット</span>
+                    </Button>
+                    <Button
+                      onClick={handleApplyImage}
+                      className='rounded-none gap-2 bg-green-600 hover:bg-green-500 text-white border-0 h-auto py-2 px-4 transition-all duration-300'
+                    >
+                      <HiCheck className='w-4 h-4' />
+                      <span>適用して保存</span>
+                    </Button>
                   </div>
-                  <Button
-                    variant='ghost'
-                    onClick={handleDiscard}
-                    className='self-start gap-2 h-auto px-0 py-1 text-xs text-gray-400 hover:text-gray-300 transition-all duration-300'
-                  >
-                    <HiArrowPath className='w-4 h-4 shrink-0' />
-                    <span>初期設定に戻す</span>
-                  </Button>
                 </div>
-              )}
-            </div>
+                {isSettingExpanded && (
+                  <div className='flex flex-col p-4'>
+                    <div className='py-4 border-t border-gray-700 grid grid-cols-2 gap-8'>
+                      <AdjustSlider
+                        label='明るさ'
+                        value={brightness}
+                        onChange={setBrightness}
+                        min={-50}
+                        max={50}
+                      />
+                      <AdjustSlider
+                        label='コントラスト'
+                        value={contrast}
+                        onChange={setContrast}
+                        min={-50}
+                        max={50}
+                      />
+                      <AdjustSlider
+                        label='鮮やかさ'
+                        value={saturation}
+                        onChange={setSaturation}
+                        min={-50}
+                        max={50}
+                      />
+                      <AdjustSlider
+                        label='暖かさ'
+                        value={warmth}
+                        onChange={setWarmth}
+                        min={-50}
+                        max={50}
+                      />
+                    </div>
+                    <Button
+                      variant='ghost'
+                      onClick={handleReset}
+                      className='self-start gap-2 h-auto px-0 py-1 text-xs text-gray-400 hover:text-gray-300 transition-all duration-300'
+                    >
+                      <HiArrowPath className='w-4 h-4 shrink-0' />
+                      <span>初期設定に戻す</span>
+                    </Button>
+                  </div>
+                )}
+              </div>
+            )}
             {beforeImage && <ThumbnailBar beforeImage={beforeImage} />}
           </div>
 
-          <aside className='w-52 lg:w-64 shrink-0 flex flex-col border-l border-gray-700'>
-            
+          <aside className='w-52 lg:w-64 shrink-0 flex flex-col border-l border-gray-700 p-3 lg:p-4 overflow-y-auto'>
+            {filteredImageDataUrl && (
+              <div className='flex flex-col gap-2.5'>
+                <div className='rounded overflow-hidden bg-gray-800/80 shadow-lg flex flex-col'>
+                  <div className='relative aspect-video w-full shrink-0'>
+                    <Image
+                      src={filteredImageDataUrl}
+                      alt='編集後'
+                      className='absolute inset-0 w-full h-full object-cover'
+                      width={500}
+                      height={400}
+                    />
+                  </div>
+                  <Button
+                    onClick={handleDownloadFiltered}
+                    className='w-full rounded-none gap-2 bg-orange-600 hover:bg-orange-600/80 text-white font-bold py-2 h-auto transition-all duration-300'
+                  >
+                    <FaDownload className='w-4 h-4' />
+                    <span>ダウンロード</span>
+                  </Button>
+                </div>
+              </div>
+            )}
           </aside>
         </div>
       </div>

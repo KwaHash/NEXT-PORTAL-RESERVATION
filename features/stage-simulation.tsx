@@ -10,6 +10,7 @@ import { AdjustSlider } from '@/components/slider/adjust-slider'
 import { Button } from '@/components/ui/button'
 import { exteriorTools, interiorTools } from '@/constants/stage-simulation'
 import { cn } from '@/lib/utils'
+import styles from '@/styles/scroll.module.css'
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { BsStars } from 'react-icons/bs'
@@ -98,11 +99,11 @@ const StageSimulationPage = () => {
             <ImageUploadButton setBeforeImage={setBeforeImage} setAfterImage={setAfterImage} />
           </div>
         </div>
-        <div className='flex-1 flex min-h-0'>
-          <aside className='w-60 lg:w-80 shrink-0 flex flex-col border-r border-gray-700'>
-            <h2 className='font-bold p-4 border-b border-gray-700 text-base md:text-lg uppercase tracking-wider'>AIツール</h2>
-            <div className='flex-1 overflow-y-auto'>
-              <div className='border-b border-gray-700'>
+        <div className='flex max-h-[calc(100vh_-_145px)] h-full'>
+          <aside className='w-60 lg:w-80 grow shrink-0 flex flex-col border-r border-gray-700'>
+            <h2 className='shrink-0 font-bold p-4 text-base md:text-lg uppercase tracking-wider'>AIツール</h2>
+            <div className={cn('grow overflow-y-auto', styles.scrollbar)}>
+              <div className='flex flex-col'>
                 <Button
                   variant='ghost'
                   onClick={() => setExteriorOpen((o) => !o)}
@@ -129,7 +130,7 @@ const StageSimulationPage = () => {
                   </div>
                 )}
               </div>
-              <div className='border-b border-gray-700'>
+              <div className='flex flex-col'>
                 <Button
                   variant='ghost'
                   onClick={() => setInteriorOpen((o) => !o)}
@@ -157,7 +158,7 @@ const StageSimulationPage = () => {
                 )}
               </div>
             </div>
-            <div className='p-4 lg:p-6 border-t border-gray-700 space-y-2.5'>
+            <div className='shrink-0 p-4 lg:p-6 border-t border-gray-700 space-y-2.5'>
               <Button
                 className='w-full bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-none gap-2'
                 disabled={selectedTool === null}
@@ -176,7 +177,7 @@ const StageSimulationPage = () => {
             </div>
           </aside>
 
-          <div className='relative flex flex-col w-[calc(100%-256px)]'>
+          <div className='relative flex flex-col w-[calc(100%-256px)] grow'>
             <MainCompare
               beforeImage={beforeImage}
               afterImage={afterImage}
@@ -265,7 +266,7 @@ const StageSimulationPage = () => {
             {beforeImage && <ThumbnailBar beforeImage={beforeImage} />}
           </div>
 
-          <aside className='w-52 lg:w-64 shrink-0 flex flex-col border-l border-gray-700 p-3 lg:p-4 overflow-y-auto'>
+          <aside className={cn('w-52 lg:w-64 shrink-0 flex flex-col border-l border-gray-700 p-3 lg:p-4 overflow-y-auto', styles.scrollbar)}>
             {filteredImageDataUrl && (
               <div className='flex flex-col gap-2.5'>
                 <div className='rounded overflow-hidden bg-gray-800/80 shadow-lg flex flex-col'>

@@ -23,7 +23,7 @@ export function ColorPalette({ palette, selectedColor, onSelect }: IColorPalette
           <Button
             key={color}
             onClick={() => onSelect(color)}
-            className={cn('w-10 h-10 rounded-none border-2', selectedColor === color ? 'border-red-600' : 'border-none')}
+            className={cn('w-10 h-10 rounded-none border-2', selectedColor === color ? 'border-orange-600' : 'border-none')}
             style={{ backgroundColor: color }}
           />
         ))}

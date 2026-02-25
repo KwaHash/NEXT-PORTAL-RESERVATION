@@ -5,16 +5,16 @@ import { ToolButton } from '@/components/button/tool-button'
 import DesktopRequired from '@/components/desktop-required'
 import { buildImageFilter } from '@/components/simulation/before-after-slider'
 import { MainCompare } from '@/components/simulation/main-compare'
+import { ResultDownload } from '@/components/simulation/result-download'
 import { ThumbnailBar } from '@/components/simulation/thumbnail-bar'
 import { AdjustSlider } from '@/components/slider/adjust-slider'
 import { Button } from '@/components/ui/button'
 import { exteriorTools, interiorTools } from '@/constants/stage-simulation'
 import { cn } from '@/lib/utils'
 import styles from '@/styles/scroll.module.css'
-import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { BsStars } from 'react-icons/bs'
-import { FaDownload, FaShareNodes } from 'react-icons/fa6'
+import { FaShareNodes } from 'react-icons/fa6'
 import { HiAdjustmentsHorizontal, HiArrowPath, HiCheck, HiChevronDown, HiChevronUp, HiUser, HiXMark } from 'react-icons/hi2'
 
 const StageSimulationPage = () => {
@@ -62,14 +62,6 @@ const StageSimulationPage = () => {
     setIsApplied(false)
     setIsSettingExpanded(false)
   }, [afterImage, brightness, saturation, contrast, warmth])
-
-  const handleDownloadFiltered = useCallback(() => {
-    if (!filteredImageDataUrl) return
-    const a = document.createElement('a')
-    a.href = filteredImageDataUrl
-    a.download = `空室演出-${Date.now()}.png`
-    a.click()
-  }, [filteredImageDataUrl])
 
   const handleReset = () => {
     setBrightness(0)
@@ -268,26 +260,7 @@ const StageSimulationPage = () => {
 
           <aside className={cn('w-52 lg:w-64 shrink-0 flex flex-col border-l border-gray-700 p-3 lg:p-4 overflow-y-auto', styles.scrollbar)}>
             {filteredImageDataUrl && (
-              <div className='flex flex-col gap-2.5'>
-                <div className='rounded overflow-hidden bg-gray-800/80 shadow-lg flex flex-col'>
-                  <div className='relative aspect-video w-full shrink-0'>
-                    <Image
-                      src={filteredImageDataUrl}
-                      alt='編集後'
-                      className='absolute inset-0 w-full h-full object-cover'
-                      width={500}
-                      height={400}
-                    />
-                  </div>
-                  <Button
-                    onClick={handleDownloadFiltered}
-                    className='w-full rounded-none gap-2 bg-orange-600 hover:bg-orange-600/80 text-white font-bold py-2 h-auto transition-all duration-300'
-                  >
-                    <FaDownload className='w-4 h-4' />
-                    <span>ダウンロード</span>
-                  </Button>
-                </div>
-              </div>
+              <ResultDownload imageDataUrl={filteredImageDataUrl} />
             )}
           </aside>
         </div>

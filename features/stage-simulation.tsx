@@ -1,11 +1,11 @@
 'use client'
 
 import { ImageUploadButton } from '@/components/button/image-upload'
+import { ToolButton } from '@/components/button/tool-button'
 import DesktopRequired from '@/components/desktop-required'
 import { buildImageFilter } from '@/components/simulation/before-after-slider'
 import { MainCompare } from '@/components/simulation/main-compare'
 import { ThumbnailBar } from '@/components/simulation/thumbnail-bar'
-import { ToolButton } from '@/components/simulation/tool-button'
 import { AdjustSlider } from '@/components/slider/adjust-slider'
 import { Button } from '@/components/ui/button'
 import { exteriorTools, interiorTools } from '@/constants/stage-simulation'

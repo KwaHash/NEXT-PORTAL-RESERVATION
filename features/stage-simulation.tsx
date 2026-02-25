@@ -80,7 +80,7 @@ const StageSimulationPage = () => {
   return (
     <>
       <DesktopRequired />
-      <div className='flex-1 hidden md:flex md:flex-col bg-[#1A1A1A] text-white'>
+      <div className='h-[calc(100vh_-_80px)] hidden md:flex md:flex-col bg-[#1A1A1A] text-white'>
         <div className='shrink-0 flex items-center justify-between gap-4 px-4 lg:px-6 py-3 border-b border-gray-700'>
           <h2 className='flex items-center font-bold text-2xl gap-3 min-w-0'>空室演出</h2>
           <div className='flex items-center gap-2 shrink-0'>

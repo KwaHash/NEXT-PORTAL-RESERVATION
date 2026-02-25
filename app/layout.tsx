@@ -81,7 +81,7 @@ export default function RootLayout({
           <Providers>
             <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
               <NavBar />
-              <main className='flex flex-col w-full h-[calc(100vh_-_80px)] mt-20'>
+              <main className='flex flex-col w-full min-h-[calc(100vh_-_80px)] mt-20'>
                 {children}
               </main>
               <Footer />

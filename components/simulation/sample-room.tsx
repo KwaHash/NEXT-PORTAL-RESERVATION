@@ -13,7 +13,7 @@ export interface ISampleRoomItem {
 
 interface ISampleRoomProps {
   room: ISampleRoomItem
-  selectedImage: string
+  selectedImage: string | null
   onSelect: (image: string) => void
 }
 
@@ -22,7 +22,7 @@ export function SampleRoom({ room, selectedImage, onSelect }: ISampleRoomProps) 
 
   return (
     <Button onClick={() => onSelect(room.image)}
-      className={cn('relative w-full h-auto aspect-video rounded-none p-0 border-2', isSelected ? 'border-red-600' : 'border-none')}
+      className={cn('relative w-full h-auto aspect-video rounded-none p-0 border-2', isSelected ? 'border-orange-600' : 'border-none')}
     >
       <Image
         src={room.image}
@@ -32,9 +32,7 @@ export function SampleRoom({ room, selectedImage, onSelect }: ISampleRoomProps) 
         className='w-full h-full object-cover'
       />
       <div className='absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center'>
-        <span className='text-white font-medium text-base tracking-widest'>
-          {room.name}
-        </span>
+        <span className='text-white font-medium text-[13px] tracking-normal'>{room.name}</span>
       </div>
     </Button>
   )

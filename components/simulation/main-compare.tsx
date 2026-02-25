@@ -26,7 +26,7 @@ export const MainCompare = ({ beforeImage, afterImage, className, imageAdjust }:
 
   return (
     <div className='flex flex-col h-full'>
-      <div className={cn('flex items-center justify-center flex-1 w-full max-w-5xl m-auto p-3 overflow-auto', className)}>
+      <div className={cn('flex items-center justify-center w-full max-w-5xl m-auto p-3 overflow-auto', className)}>
         {afterImage ? (
           <BeforeAfterSlider
             beforeImage={beforeImage}

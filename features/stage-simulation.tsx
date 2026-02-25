@@ -93,7 +93,7 @@ const StageSimulationPage = () => {
         </div>
         <div className='flex max-h-[calc(100vh_-_145px)] h-full'>
           <aside className='w-60 lg:w-80 grow shrink-0 flex flex-col border-r border-gray-700'>
-            <h2 className='shrink-0 font-bold p-4 text-base md:text-lg uppercase tracking-wider'>AIツール</h2>
+            <h3 className='shrink-0 font-bold p-4 text-base md:text-lg uppercase tracking-wider'>AIツール</h3>
             <div className={cn('grow overflow-y-auto', styles.scrollbar)}>
               <div className='flex flex-col'>
                 <Button
